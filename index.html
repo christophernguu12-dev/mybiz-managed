@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Track products and stock, sales, expenses, and customer debts with SmartBiz. Records stay in your browser on this device, with manual backup and export.">
+<title>SmartBiz — Sales, Stock &amp; Expense Tracker</title>
+<style>
+:root{--bg:#2f7ee5;--card:#fff;--ink:#39ed10;--muted:#718096;--line:#e5eaf2;--primary:#5b5ce2;--primary2:#7778ff;--green:#139b72;--red:#df4b62;--amber:#d99016;--nav:#171b35}
+*{box-sizing:border-box}body{margin:0;font-family:Inter,Segoe UI,Arial,sans-serif;background:var(--bg);color:var(--ink)}button,input,select,textarea{font:inherit}button{cursor:pointer;border:0;border-radius:10px;padding:10px 14px;font-weight:650;transition:.15s}button:hover{filter:brightness(.97);transform:translateY(-1px)}.app{display:grid;grid-template-columns:245px 1fr;min-height:100vh}.sidebar{background:var(--nav);color:#fff;padding:25px 16px;display:flex;flex-direction:column;gap:25px}.brand{font-size:22px;font-weight:800;letter-spacing:-.5px;padding:0 10px}.brand span{color:#9b9cff}.brand small{display:block;color:#a8aec9;font-size:11px;font-weight:500;letter-spacing:1.5px;margin-top:5px}.nav{display:grid;gap:7px}.nav button{color:#bfc5e1;background:transparent;text-align:left;padding:13px 14px;border-radius:11px}.nav button.active,.nav button:hover{background:#2d3157;color:white}.sidebar-note{margin-top:auto;color:#a8aec9;font-size:12px;line-height:1.6;padding:10px}.main{min-width:0}.topbar{display:flex;align-items:center;justify-content:space-between;gap:15px;padding:23px 30px;background:#fff;border-bottom:1px solid var(--line)}.topbar h1{font-size:23px;margin:0}.topbar p{margin:5px 0 0;color:var(--muted);font-size:13px}.top-actions{display:flex;gap:9px;flex-wrap:wrap}.primary{background:var(--primary);color:#fff}.light{background:#eef0ff;color:#4b4cc9}.danger{background:#fff0f2;color:var(--red)}.success{background:#e7f8f1;color:var(--green)}.content{padding:26px 30px;max-width:1500px;margin:auto}.page{display:none}.page.active{display:block}.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px;margin-bottom:22px}.stat,.panel{background:var(--card);border:1px solid var(--line);border-radius:17px;padding:20px;box-shadow:0 4px 16px rgba(35,49,80,.025)}.stat .label{color:var(--muted);font-size:13px}.stat .value{font-size:27px;font-weight:800;margin:11px 0 7px;letter-spacing:-.5px}.stat .foot{font-size:12px;color:var(--muted)}.stat .icon{float:right;width:38px;height:38px;display:grid;place-items:center;border-radius:12px;background:#eef0ff;font-size:19px}.green-text{color:var(--green)}.red-text{color:var(--red)}.grid2{display:grid;grid-template-columns:1.35fr 1fr;gap:18px}.panel{margin-bottom:18px;min-width:0}.panel-head{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:17px}.panel h2{font-size:16px;margin:0}.muted{color:var(--muted)}.small{font-size:12px}.table-wrap{overflow:auto}table{width:100%;border-collapse:collapse;white-space:nowrap;font-size:13px}th{text-align:left;color:var(--muted);font-weight:650;font-size:11px;text-transform:uppercase;letter-spacing:.5px;background:#fafbfe}th,td{padding:13px 12px;border-bottom:1px solid var(--line)}tbody tr:last-child td{border-bottom:0}.pill{display:inline-block;border-radius:20px;padding:5px 8px;font-size:11px;font-weight:750}.pill.green{background:#e4f7ef;color:#11845f}.pill.orange{background:#fff3d9;color:#a96c08}.pill.red{background:#ffeaed;color:#c6334b}.pill.purple{background:#efedff;color:#5755c9}.barlist{display:grid;gap:17px}.barrow{display:grid;grid-template-columns:100px 1fr 80px;align-items:center;gap:10px;font-size:12px}.barbg{height:9px;background:#edf0f7;border-radius:20px;overflow:hidden}.barfill{height:100%;background:linear-gradient(90deg,#6264e8,#a5a6ff);border-radius:20px}.formgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.field{display:grid;gap:7px}.field label{font-size:12px;font-weight:700;color:#4b5568}.field input,.field select,.field textarea,.toolbar input,.toolbar select{width:100%;padding:11px 12px;border:1px solid #dfe5ef;border-radius:10px;background:white;color:var(--ink);outline:none}.field input:focus,.field select:focus,.field textarea:focus{border-color:#7778ff;box-shadow:0 0 0 3px #7778ff20}.field.full{grid-column:1/-1}.form-actions{display:flex;justify-content:flex-end;gap:9px;margin-top:18px}.toolbar{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:16px}.toolbar input{max-width:300px}.toolbar select{max-width:180px}.empty{text-align:center;color:var(--muted);padding:28px}.alert{padding:13px 15px;background:#fff7e6;color:#8d5b08;border:1px solid #f5dfab;border-radius:12px;font-size:13px;line-height:1.5;margin-bottom:18px}.quick{display:flex;gap:10px;flex-wrap:wrap}.quick button{padding:12px 15px}.money{font-variant-numeric:tabular-nums}.chart{height:190px;display:flex;align-items:flex-end;gap:12px;padding:15px 5px 0;border-bottom:1px solid var(--line)}.chart-col{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;height:100%;gap:8px;min-width:0}.chart-bar{width:min(34px,70%);border-radius:7px 7px 2px 2px;background:linear-gradient(180deg,#8e90ff,#595be0);min-height:3px}.chart-label{font-size:10px;color:var(--muted)}.chart-val{font-size:10px;color:#6264a0}.settings-note{font-size:13px;line-height:1.7;color:var(--muted)}.toast{position:fixed;right:22px;bottom:22px;background:#171b35;color:#fff;padding:13px 17px;border-radius:12px;box-shadow:0 8px 30px #0002;z-index:50;display:none;max-width:90vw}.modal-backdrop{position:fixed;inset:0;background:#12172a80;display:none;align-items:center;justify-content:center;padding:18px;z-index:30}.modal{width:min(620px,100%);max-height:90vh;overflow:auto;background:#fff;border-radius:18px;padding:24px;box-shadow:0 25px 80px #0003}.modal h2{margin:0 0 18px}.modal-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:15px}.close{background:#f0f2f7;color:#444}.footnote{font-size:12px;color:var(--muted);line-height:1.6;margin-top:15px}
+.app[hidden],#landing[hidden]{display:none}
+.landing{max-width:1080px;margin:0 auto;padding:clamp(28px,6vw,76px) 24px}
+.landing-hero{max-width:760px;margin:0 auto 34px;text-align:center}
+.landing-brand{font-size:14px;font-weight:800;letter-spacing:.08em;color:var(--primary);text-transform:uppercase}
+.landing h1{font-size:clamp(34px,6vw,58px);line-height:1.08;letter-spacing:-.04em;margin:18px 0}
+.landing-lead{font-size:clamp(17px,2.4vw,21px);line-height:1.6;color:#526078}
+.landing-hero .primary{margin-top:14px;padding:13px 20px}
+.landing-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin:28px 0}
+.landing-card,.landing-faq{background:#fff;border:1px solid var(--line);border-radius:16px;padding:20px}
+.landing-card h2,.landing-faq h2{font-size:17px;margin:0 0 9px}
+.landing-card p,.landing-faq p{color:#1c69ee;line-height:1.65;margin:0}
+.landing-faqs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.landing-faq h2{font-size:15px}
+.landing-footer{text-align:center;color:var(--muted);font-size:13px;margin:26px 0 0}
+.landing-link{background:none;color:#c8cce1;padding:2px 0;text-decoration:underline;text-underline-offset:3px;font-size:12px}
+@media(max-width:1000px){.app{grid-template-columns:200px 1fr}.stats{grid-template-columns:repeat(2,minmax(0,1fr))}.grid2{grid-template-columns:1fr}.content{padding:20px}.topbar{padding:20px}}
+@media(max-width:680px){.app{display:block}.sidebar{padding:13px;gap:12px}.brand{padding:3px 8px}.brand small{display:inline;margin-left:7px}.nav{display:flex;overflow:auto;gap:5px}.nav button{white-space:nowrap;padding:10px 12px;font-size:12px}.sidebar-note{display:none}.topbar{align-items:flex-start;padding:17px;flex-direction:column}.topbar h1{font-size:20px}.content{padding:14px}.stats{gap:10px}.stat{padding:14px}.stat .value{font-size:21px}.stat .icon{width:30px;height:30px}.panel{padding:15px}.formgrid{grid-template-columns:1fr}.field.full{grid-column:auto}.barrow{grid-template-columns:76px 1fr 65px}}
+@media(max-width:680px){.landing{padding:30px 16px}.landing-grid,.landing-faqs{grid-template-columns:1fr}.landing-card,.landing-faq{padding:17px}}
+</style>
+</head>
+<body>
+<main id="landing" class="landing">
+  <header class="landing-hero">
+    <div class="landing-brand">SmartBiz</div>
+    <h1>Keep track of sales, stock, expenses, and customer debts.</h1>
+    <p class="landing-lead">SmartBiz is a browser-based business tracker for recording everyday transactions and checking simple business reports in one place.</p>
+    <button class="primary" onclick="openApp()">Open SmartBiz</button>
+  </header>
+  <section class="landing-grid" aria-label="What SmartBiz helps you manage">
+    <article class="landing-card"><h2>Products and stock</h2><p>Keep a product list with buying cost, selling price, and quantity. See low-stock alerts and current stock value.</p></article>
+    <article class="landing-card"><h2>Sales and expenses</h2><p>Record sales and business expenses, then review sales revenue, estimated profit, and product performance.</p></article>
+    <article class="landing-card"><h2>Customer debts</h2><p>Record amounts customers owe, track payments received, and review outstanding balances.</p></article>
+  </section>
+  <section aria-labelledby="faqTitle">
+    <h2 id="faqTitle">SmartBiz questions and answers</h2>
+    <div class="landing-faqs">
+      <article class="landing-faq"><h2>What does SmartBiz track?</h2><p>It tracks products and stock, sales, expenses, customer debts, and reports calculated from the records you enter.</p></article>
+      <article class="landing-faq"><h2>Where are my records saved?</h2><p>Records are saved in browser storage on this device. They are not sent to a SmartBiz cloud account and do not automatically sync.</p></article>
+      <article class="landing-faq"><h2>Can I move my records to another device?</h2><p>Yes. Download a JSON backup in Settings &amp; Backup, then import that file in SmartBiz on the other device. This is a manual transfer.</p></article>
+      <article class="landing-faq"><h2>Can multiple people sign in or share records?</h2><p>No. SmartBiz has no user accounts or multi-user access, and records are stored separately in each browser on each device.</p></article>
+      <article class="landing-faq"><h2>Which currencies can I use?</h2><p>You can choose a currency label: Kenyan shilling (KSh), US dollar ($), pound sterling (£), Ugandan shilling (UGX), or Tanzanian shilling (TZS). This changes the displayed label; it does not convert amounts.</p></article>
+      <article class="landing-faq"><h2>Do I need to install anything?</h2><p>No extra software installation is needed; SmartBiz runs in your web browser. It does not process online payments or sync data online.</p></article>
+    </div>
+  </section>
+  <p class="landing-footer">Your data stays in this browser on this device. Export backups regularly to keep a separate copy.</p>
+</main>
+<div class="app" id="businessApp" hidden>
+<aside class="sidebar">
+  <div class="brand">Smart<span>Biz</span><small>BUSINESS CONTROL</small></div>
+  <nav class="nav">
+    <button class="active" data-page="dashboard">▦ &nbsp; Dashboard</button>
+    <button data-page="products">▤ &nbsp; Products & Stock</button>
+    <button data-page="sales">↗ &nbsp; Sales</button>
+    <button data-page="expenses">↘ &nbsp; Expenses</button>
+    <button data-page="debts">◷ &nbsp; Debts & Credit</button>
+    <button data-page="reports">▥ &nbsp; Reports</button>
+    <button data-page="settings">⚙ &nbsp; Settings & Backup</button>
+  </nav>
+  <div class="sidebar-note">Simple tools for better business decisions.<br>Data is stored in this browser on this device.<br><a class="landing-link" href="#about" onclick="returnToLanding();return false;">About SmartBiz</a></div>
+</aside>
+<main class="main">
+<header class="topbar">
+  <div><h1 id="pageTitle">Business overview</h1><p id="todayLine">Your business at a glance</p></div>
+  <div class="top-actions"><button class="light" onclick="exportCSV()">↓ Export CSV</button><button class="primary" onclick="openModal('sale')">＋ Record sale</button></div>
+</header>
+<div class="content">
+<section class="page active" id="dashboard">
+  <div class="alert"><b>Welcome to SmartBiz.</b> Add your products and record real transactions to make the dashboard and reports reflect your business. Starter sample data is included; you can clear it in Settings.</div>
+  <div class="stats">
+    <div class="stat"><span class="icon">💰</span><div class="label">Total sales</div><div class="value money" id="statSales">KSh 0</div><div class="foot">Recorded sales revenue</div></div>
+    <div class="stat"><span class="icon">📈</span><div class="label">Estimated profit</div><div class="value money" id="statProfit">KSh 0</div><div class="foot">Sales − cost of sold goods − expenses</div></div>
+    <div class="stat"><span class="icon">📦</span><div class="label">Stock value</div><div class="value money" id="statStock">KSh 0</div><div class="foot">Buying cost of current stock</div></div>
+    <div class="stat"><span class="icon">🧾</span><div class="label">Outstanding debts</div><div class="value money" id="statDebts">KSh 0</div><div class="foot">Unpaid customer balances</div></div>
+  </div>
+  <div class="grid2">
+    <div class="panel"><div class="panel-head"><h2>Recent sales</h2><button class="light" onclick="go('sales')">View all</button></div><div class="table-wrap"><table><thead><tr><th>Date</th><th>Product</th><th>Qty</th><th>Total</th><th>Profit</th></tr></thead><tbody id="recentSales"></tbody></table></div></div>
+    <div class="panel"><div class="panel-head"><h2>Stock status</h2><button class="light" onclick="go('products')">Manage stock</button></div><div id="stockStatus"></div></div>
+  </div>
+  <div class="panel"><div class="panel-head"><h2>Quick actions</h2><span class="muted small">Keep records up to date</span></div><div class="quick"><button class="primary" onclick="openModal('product')">＋ Add product</button><button class="light" onclick="openModal('sale')">＋ Record sale</button><button class="light" onclick="openModal('expense')">＋ Add expense</button><button class="light" onclick="openModal('debt')">＋ Record debt</button></div></div>
+</section>
+
+<section class="page" id="products">
+  <div class="panel"><div class="panel-head"><h2>Products & inventory</h2><button class="primary" onclick="openModal('product')">＋ Add product</button></div>
+    <div class="toolbar"><input id="productSearch" placeholder="Search products..." oninput="renderProducts()"><select id="stockFilter" onchange="renderProducts()"><option value="all">All stock</option><option value="low">Low stock</option><option value="out">Out of stock</option></select></div>
+    <div class="table-wrap"><table><thead><tr><th>Product</th><th>Category</th><th>Buying cost</th><th>Selling price</th><th>In stock</th><th>Stock value</th><th>Status</th><th>Actions</th></tr></thead><tbody id="productsTable"></tbody></table></div>
+  </div>
+</section>
+<section class="page" id="sales">
+  <div class="panel"><div class="panel-head"><h2>Sales records</h2><button class="primary" onclick="openModal('sale')">＋ Record sale</button></div>
+  <div class="toolbar"><input id="salesSearch" placeholder="Search product or customer..." oninput="renderSales()"><input id="salesDate" type="date" onchange="renderSales()"></div>
+  <div class="table-wrap"><table><thead><tr><th>Date</th><th>Product</th><th>Customer</th><th>Qty</th><th>Revenue</th><th>Cost</th><th>Profit</th><th>Payment</th></tr></thead><tbody id="salesTable"></tbody></table></div></div>
+</section>
+<section class="page" id="expenses">
+  <div class="panel"><div class="panel-head"><h2>Business expenses</h2><button class="primary" onclick="openModal('expense')">＋ Add expense</button></div>
+  <div class="toolbar"><input id="expenseSearch" placeholder="Search expenses..." oninput="renderExpenses()"></div>
+  <div class="table-wrap"><table><thead><tr><th>Date</th><th>Expense</th><th>Category</th><th>Amount</th><th>Notes</th><th>Actions</th></tr></thead><tbody id="expensesTable"></tbody></table></div></div>
+</section>
+<section class="page" id="debts">
+  <div class="panel"><div class="panel-head"><h2>Customer debts & credit</h2><button class="primary" onclick="openModal('debt')">＋ Record debt</button></div>
+  <div class="alert">Track amounts customers still owe you. Record a payment to reduce the outstanding balance.</div>
+  <div class="table-wrap"><table><thead><tr><th>Date</th><th>Customer</th><th>Reason</th><th>Amount owed</th><th>Paid</th><th>Balance</th><th>Actions</th></tr></thead><tbody id="debtsTable"></tbody></table></div></div>
+</section>
+<section class="page" id="reports">
+  <div class="stats">
+    <div class="stat"><div class="label">Sales transactions</div><div class="value" id="reportCount">0</div><div class="foot">Number of recorded sales</div></div>
+    <div class="stat"><div class="label">Gross profit</div><div class="value money" id="reportGross">KSh 0</div><div class="foot">Before expenses</div></div>
+    <div class="stat"><div class="label">Expenses</div><div class="value money" id="reportExpenses">KSh 0</div><div class="foot">Recorded business costs</div></div>
+    <div class="stat"><div class="label">Net estimated profit</div><div class="value money" id="reportNet">KSh 0</div><div class="foot">Gross profit minus expenses</div></div>
+  </div>
+  <div class="grid2"><div class="panel"><div class="panel-head"><h2>Sales by product</h2></div><div id="productBars" class="barlist"></div></div><div class="panel"><div class="panel-head"><h2>Summary</h2></div><div id="reportSummary"></div><p class="footnote">Reports are calculated from the records currently saved in this browser. They are management estimates, not audited accounts.</p></div></div>
+</section>
+<section class="page" id="settings">
+  <div class="panel"><div class="panel-head"><h2>Business settings</h2></div>
+    <div class="formgrid">
+      <div class="field"><label for="businessName">Business name</label><input id="businessName" placeholder="My Business"></div>
+      <div class="field"><label for="currency">Currency label</label><select id="currency"><option value="KSh">KSh — Kenyan shilling</option><option value="$">$ — US dollar</option><option value="£">£ — Pound sterling</option><option value="UGX">UGX — Ugandan shilling</option><option value="TZS">TZS — Tanzanian shilling</option></select></div>
+      <div class="field"><label for="lowStock">Low-stock warning threshold</label><input id="lowStock" type="number" min="0" value="5"></div>
+    </div>
+    <div class="form-actions"><button class="primary" onclick="saveSettings()">Save settings</button></div>
+  </div>
+  <div class="panel"><div class="panel-head"><h2>Backup & data</h2></div>
+    <p class="settings-note">Your records are saved in local browser storage on this device. They do not automatically sync to another laptop or phone. Export a backup regularly.</p>
+    <div class="quick"><button class="primary" onclick="downloadBackup()">Download full JSON backup</button><button class="light" onclick="document.getElementById('backupFile').click()">Import backup</button><input id="backupFile" type="file" accept=".json,application/json" style="display:none" onchange="importBackup(event)"><button class="light" onclick="exportCSV()">Export sales CSV</button><button class="danger" onclick="clearData()">Clear all records</button></div>
+    <p class="footnote">Keep your backup file private. Importing a backup replaces the current records.</p>
+  </div>
+  <div class="panel"><div class="panel-head"><h2>About SmartBiz</h2></div><p class="settings-note">This is a standalone browser-based business manager. It works without installing extra software. It does not include multi-user login, cloud sync, online payments, or automatic notifications; those require a server and additional setup.</p></div>
+</section>
+</div>
+</main>
+</div>
+
+<div class="modal-backdrop" id="modalBackdrop" onclick="if(event.target===this)closeModal()"><div class="modal"><div class="modal-top"><h2 id="modalTitle">Add record</h2><button class="close" onclick="closeModal()">✕</button></div><form id="recordForm" onsubmit="saveRecord(event)"><div id="modalFields" class="formgrid"></div><div class="form-actions"><button type="button" class="light" onclick="closeModal()">Cancel</button><button type="submit" class="primary">Save record</button></div></form></div></div>
+<div class="toast" id="toast"></div>
+
+<script>
+const STORAGE_KEY='smartbiz_data_v1';
+const today=()=>new Date().toISOString().slice(0,10);
+const uid=()=>Date.now().toString(36)+Math.random().toString(36).slice(2,7);
+let data;
+const starter=()=>({
+ settings:{businessName:'My Business',currency:'KSh',lowStock:5},
+ products:[
+  {id:'p1',name:'Onions',category:'Produce',cost:70,price:100,stock:40},
+  {id:'p2',name:'Tomatoes',category:'Produce',cost:60,price:90,stock:18},
+  {id:'p3',name:'Cooking oil (1L)',category:'Groceries',cost:180,price:230,stock:4},
+  {id:'p4',name:'Rice (1kg)',category:'Groceries',cost:120,price:160,stock:12}
+ ],
+ sales:[
+  {id:'s1',date:today(),productId:'p1',product:'Onions',customer:'Cash customer',qty:5,price:100,cost:70,payment:'Paid'},
+  {id:'s2',date:today(),productId:'p2',product:'Tomatoes',customer:'Cash customer',qty:3,price:90,cost:60,payment:'Paid'}
+ ],
+ expenses:[{id:'e1',date:today(),name:'Transport',category:'Transport',amount:150,notes:'Market delivery'}],
+ debts:[]
+});
+function loadData(){try{const raw=localStorage.getItem(STORAGE_KEY);data=raw?JSON.parse(raw):starter();}catch(e){data=starter();}if(!data.settings)data.settings={businessName:'My Business',currency:'KSh',lowStock:5};}
+function persist(){localStorage.setItem(STORAGE_KEY,JSON.stringify(data));}
+function money(n){return (data.settings.currency||'KSh')+' '+Number(n||0).toLocaleString('en-KE',{minimumFractionDigits:0,maximumFractionDigits:2});}
+function esc(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
+function toast(msg){const el=document.getElementById('toast');el.textContent=msg;el.style.display='block';setTimeout(()=>el.style.display='none',2600);}
+function grossProfit(){return data.sales.reduce((s,x)=>s+(x.price-x.cost)*x.qty,0);}
+function totalSales(){return data.sales.reduce((s,x)=>s+x.price*x.qty,0);}
+function totalExpenses(){return data.expenses.reduce((s,x)=>s+Number(x.amount),0);}
+function stockValue(){return data.products.reduce((s,p)=>s+p.cost*p.stock,0);}
+function totalDebt(){return data.debts.reduce((s,d)=>s+Math.max(0,d.amount-d.paid),0);}
+function openApp(){document.getElementById('landing').hidden=true;document.getElementById('businessApp').hidden=false;window.scrollTo(0,0);}
+function returnToLanding(){document.getElementById('businessApp').hidden=true;document.getElementById('landing').hidden=false;window.scrollTo(0,0);}
+function go(id){document.querySelectorAll('.page').forEach(p=>p.classList.toggle('active',p.id===id));document.querySelectorAll('.nav button').forEach(b=>b.classList.toggle('active',b.dataset.page===id));const titles={dashboard:'Business overview',products:'Products & stock',sales:'Sales records',expenses:'Business expenses',debts:'Debts & credit',reports:'Business reports',settings:'Settings & backup'};document.getElementById('pageTitle').textContent=titles[id]||'SmartBiz';renderAll();}
+document.querySelectorAll('.nav button').forEach(b=>b.addEventListener('click',()=>go(b.dataset.page)));
+function statusFor(p){const low=Number(data.settings.lowStock??5);return p.stock<=0?'<span class="pill red">Out of stock</span>':p.stock<=low?'<span class="pill orange">Low stock</span>':'<span class="pill green">In stock</span>';}
+function renderDashboard(){
+ document.getElementById('statSales').textContent=money(totalSales());
+ document.getElementById('statProfit').textContent=money(grossProfit()-totalExpenses());
+ document.getElementById('statStock').textContent=money(stockValue());
+ document.getElementById('statDebts').textContent=money(totalDebt());
+ const recent=[...data.sales].sort((a,b)=>b.date.localeCompare(a.date)).slice(0,6);
+ document.getElementById('recentSales').innerHTML=recent.length?recent.map(s=>`<tr><td>${esc(s.date)}</td><td>${esc(s.product)}</td><td>${s.qty}</td><td>${money(s.price*s.qty)}</td><td class="${(s.price-s.cost)*s.qty<0?'red-text':'green-text'}">${money((s.price-s.cost)*s.qty)}</td></tr>`).join(''):'<tr><td colspan="5" class="empty">No sales yet. Record your first sale.</td></tr>';
+ const low=data.products.filter(p=>p.stock<=Number(data.settings.lowStock??5));
+ document.getElementById('stockStatus').innerHTML=low.length?low.map(p=>`<div style="display:flex;justify-content:space-between;gap:10px;padding:12px 0;border-bottom:1px solid var(--line)"><div><b>${esc(p.name)}</b><div class="small muted">${p.stock} unit(s) remaining</div></div>${statusFor(p)}</div>`).join(''):'<div class="empty">All products are above the low-stock threshold 🎉</div>';
+}
+function renderProducts(){
+ const q=(document.getElementById('productSearch')?.value||'').toLowerCase(),f=document.getElementById('stockFilter')?.value||'all';
+ const arr=data.products.filter(p=>(p.name+' '+p.category).toLowerCase().includes(q)&&(f==='all'||(f==='low'&&p.stock>0&&p.stock<=Number(data.settings.lowStock??5))||(f==='out'&&p.stock<=0)));
+ document.getElementById('productsTable').innerHTML=arr.length?arr.map(p=>`<tr><td><b>${esc(p.name)}</b></td><td>${esc(p.category)}</td><td>${money(p.cost)}</td><td>${money(p.price)}</td><td>${p.stock}</td><td>${money(p.cost*p.stock)}</td><td>${statusFor(p)}</td><td><button class="light" onclick="editProduct('${p.id}')">Edit</button> <button class="danger" onclick="deleteProduct('${p.id}')">Delete</button></td></tr>`).join(''):'<tr><td colspan="8" class="empty">No matching products.</td></tr>';
+}
+function renderSales(){
+ const q=(document.getElementById('salesSearch')?.value||'').toLowerCase(),date=document.getElementById('salesDate')?.value||'';
+ const arr=[...data.sales].filter(s=>(s.product+' '+s.customer).toLowerCase().includes(q)&&(!date||s.date===date)).sort((a,b)=>b.date.localeCompare(a.date));
+ document.getElementById('salesTable').innerHTML=arr.length?arr.map(s=>`<tr><td>${esc(s.date)}</td><td>${esc(s.product)}</td><td>${esc(s.customer)}</td><td>${s.qty}</td><td>${money(s.price*s.qty)}</td><td>${money(s.cost*s.qty)}</td><td class="${(s.price-s.cost)*s.qty<0?'red-text':'green-text'}">${money((s.price-s.cost)*s.qty)}</td><td><span class="pill ${s.payment==='Paid'?'green':'orange'}">${esc(s.payment)}</span></td></tr>`).join(''):'<tr><td colspan="8" class="empty">No sales match your search.</td></tr>';
+}
+function renderExpenses(){
+ const q=(document.getElementById('expenseSearch')?.value||'').toLowerCase(),arr=[...data.expenses].filter(e=>(e.name+' '+e.category+' '+e.notes).toLowerCase().includes(q)).sort((a,b)=>b.date.localeCompare(a.date));
+ document.getElementById('expensesTable').innerHTML=arr.length?arr.map(e=>`<tr><td>${esc(e.date)}</td><td><b>${esc(e.name)}</b></td><td>${esc(e.category)}</td><td>${money(e.amount)}</td><td>${esc(e.notes)}</td><td><button class="danger" onclick="deleteItem('expenses','${e.id}')">Delete</button></td></tr>`).join(''):'<tr><td colspan="6" class="empty">No expenses recorded.</td></tr>';
+}
+function renderDebts(){
+ document.getElementById('debtsTable').innerHTML=data.debts.length?[...data.debts].sort((a,b)=>b.date.localeCompare(a.date)).map(d=>`<tr><td>${esc(d.date)}</td><td><b>${esc(d.customer)}</b></td><td>${esc(d.reason)}</td><td>${money(d.amount)}</td><td>${money(d.paid)}</td><td><b>${money(Math.max(0,d.amount-d.paid))}</b></td><td>${d.paid<d.amount?`<button class="success" onclick="payDebt('${d.id}')">Record payment</button>`:''} <button class="danger" onclick="deleteItem('debts','${d.id}')">Delete</button></td></tr>`).join(''):'<tr><td colspan="7" class="empty">No customer debts recorded.</td></tr>';
+}
+function renderReports(){
+ document.getElementById('reportCount').textContent=data.sales.length;
+ document.getElementById('reportGross').textContent=money(grossProfit());
+ document.getElementById('reportExpenses').textContent=money(totalExpenses());
+ document.getElementById('reportNet').textContent=money(grossProfit()-totalExpenses());
+ const map={};data.sales.forEach(s=>map[s.product]=(map[s.product]||0)+s.price*s.qty);
+ const vals=Object.entries(map).sort((a,b)=>b[1]-a[1]),max=Math.max(1,...vals.map(x=>x[1]));
+ document.getElementById('productBars').innerHTML=vals.length?vals.map(([name,val])=>`<div class="barrow"><span>${esc(name)}</span><div class="barbg"><div class="barfill" style="width:${val/max*100}%"></div></div><b>${money(val)}</b></div>`).join(''):'<div class="empty">Record sales to see product performance.</div>';
+ document.getElementById('reportSummary').innerHTML=`<div style="padding:12px 0;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;gap:10px"><span class="muted">Sales revenue</span><b>${money(totalSales())}</b></div><div style="padding:12px 0;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;gap:10px"><span class="muted">Cost of goods sold</span><b>${money(data.sales.reduce((s,x)=>s+x.cost*x.qty,0))}</b></div><div style="padding:12px 0;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;gap:10px"><span class="muted">Current stock value</span><b>${money(stockValue())}</b></div><div style="padding:12px 0;display:flex;justify-content:space-between;gap:10px"><span class="muted">Outstanding debts</span><b>${money(totalDebt())}</b></div>`;
+}
+function renderAll(){renderDashboard();renderProducts();renderSales();renderExpenses();renderDebts();renderReports();document.getElementById('todayLine').textContent=(data.settings.businessName||'Your business')+' • '+new Date().toLocaleDateString(undefined,{weekday:'long',year:'numeric',month:'short',day:'numeric'});}
+let modalType='',editingId=null;
+function field(name,label,type='text',opts={}){const id=opts.id||name,required=opts.required?'required':'',placeholder=opts.placeholder?`placeholder="${esc(opts.placeholder)}"`:'',min=opts.min!==undefined?`min="${opts.min}"`:'';if(type==='select')return `<div class="field ${opts.full?'full':''}"><label for="${id}">${label}</label><select id="${id}" name="${name}" ${required}>${opts.options.map(o=>`<option value="${esc(o.value)}">${esc(o.label)}</option>`).join('')}</select></div>`;return `<div class="field ${opts.full?'full':''}"><label for="${id}">${label}</label><input id="${id}" name="${name}" type="${type}" ${required} ${min} ${placeholder} ${opts.step?`step="${opts.step}"`:''} ${opts.value!==undefined?`value="${esc(opts.value)}"`:''}></div>`;}
+function openModal(type,id=null){
+ modalType=type;editingId=id;const p=id?data.products.find(x=>x.id===id):null;
+ const titles={product:id?'Edit product':'Add product',sale:'Record a sale',expense:'Add business expense',debt:'Record customer debt'};
+ document.getElementById('modalTitle').textContent=titles[type]||'Add record';
+ let f='';
+ if(type==='product')f=field('name','Product name','text',{required:true,value:p?.name||''})+field('category','Category','text',{value:p?.category||'General'})+field('cost','Buying cost','number',{required:true,min:0,step:'0.01',value:p?.cost??''})+field('price','Selling price','number',{required:true,min:0,step:'0.01',value:p?.price??''})+field('stock','Opening stock / quantity','number',{required:true,min:0,value:p?.stock??0});
+ if(type==='sale')f=field('productId','Product','select',{required:true,options:data.products.map(p=>({value:p.id,label:`${p.name} — stock ${p.stock}`}))})+field('qty','Quantity sold','number',{required:true,min:1,value:1})+field('customer','Customer (optional)','text',{value:'Cash customer'})+field('date','Sale date','date',{required:true,value:today()})+field('payment','Payment status','select',{options:[{value:'Paid',label:'Paid'},{value:'Part-paid / credit',label:'Part-paid / credit'}]});
+ if(type==='expense')f=field('name','Expense name','text',{required:true})+field('category','Category','select',{options:['Transport','Rent','Utilities','Supplies','Wages','Other'].map(x=>({value:x,label:x}))})+field('amount','Amount','number',{required:true,min:0,step:'0.01'})+field('date','Date','date',{required:true,value:today()})+field('notes','Notes (optional)','text',{full:true});
+ if(type==='debt')f=field('customer','Customer name','text',{required:true})+field('reason','Reason / item','text',{required:true})+field('amount','Total amount owed','number',{required:true,min:0,step:'0.01'})+field('paid','Already paid','number',{required:true,min:0,step:'0.01',value:0})+field('date','Date','date',{required:true,value:today()});
+ document.getElementById('modalFields').innerHTML=f;
+ document.getElementById('modalBackdrop').style.display='flex';
+}
+function closeModal(){document.getElementById('modalBackdrop').style.display='none';document.getElementById('recordForm').reset();editingId=null;}
+function saveRecord(ev){
+ ev.preventDefault();const fd=new FormData(ev.target),v=Object.fromEntries(fd.entries());
+ if(modalType==='product'){
+ const item={id:editingId||uid(),name:v.name.trim(),category:v.category.trim()||'General',cost:+v.cost,price:+v.price,stock:+v.stock};
+ if(!item.name||item.cost<0||item.price<0||item.stock<0)return toast('Check product details.');
+ if(editingId)data.products=data.products.map(x=>x.id===editingId?item:x);else data.products.push(item);
+ } else if(modalType==='sale'){
+ const p=data.products.find(x=>x.id===v.productId);if(!p)return toast('Add a product first.');const qty=+v.qty;if(qty<1||qty>p.stock)return toast(`Only ${p.stock} unit(s) available.`);
+ data.sales.push({id:uid(),date:v.date,productId:p.id,product:p.name,customer:v.customer.trim()||'Cash customer',qty,price:p.price,cost:p.cost,payment:v.payment});
+ p.stock-=qty;
+ } else if(modalType==='expense'){
+ data.expenses.push({id:uid(),date:v.date,name:v.name.trim(),category:v.category,amount:+v.amount,notes:v.notes||''});
+ } else if(modalType==='debt'){
+ if(+v.paid>+v.amount)return toast('Paid amount cannot exceed amount owed.');
+ data.debts.push({id:uid(),date:v.date,customer:v.customer.trim(),reason:v.reason.trim(),amount:+v.amount,paid:+v.paid});
+ }
+ persist();closeModal();renderAll();toast('Record saved successfully.');
+}
+function editProduct(id){openModal('product',id);}
+function deleteProduct(id){const p=data.products.find(x=>x.id===id);if(!p)return;if(!confirm(`Delete ${p.name}? Historical sales will remain in the records.`))return;data.products=data.products.filter(x=>x.id!==id);persist();renderAll();toast('Product deleted.');}
+function deleteItem(list,id){if(!confirm('Delete this record?'))return;data[list]=data[list].filter(x=>x.id!==id);persist();renderAll();toast('Record deleted.');}
+function payDebt(id){const d=data.debts.find(x=>x.id===id);if(!d)return;const remaining=d.amount-d.paid;const ans=prompt(`Remaining balance: ${money(remaining)}\nEnter payment received:`,String(remaining));if(ans===null)return;const n=Number(ans);if(!Number.isFinite(n)||n<=0||n>remaining)return alert('Enter a payment greater than zero and no more than the balance.');d.paid+=n;persist();renderAll();toast('Payment recorded.');}
+function saveSettings(){data.settings.businessName=document.getElementById('businessName').value.trim()||'My Business';data.settings.currency=document.getElementById('currency').value;data.settings.lowStock=Math.max(0,Number(document.getElementById('lowStock').value)||0);persist();renderAll();toast('Settings saved.');}
+function downloadBackup(){const blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json'});downloadBlob(blob,'smartbiz-backup-'+today()+'.json');}
+function exportCSV(){const rows=[['Date','Product','Customer','Quantity','Selling price','Unit cost','Revenue','Cost of goods','Profit','Payment'],...data.sales.map(s=>[s.date,s.product,s.customer,s.qty,s.price,s.cost,s.price*s.qty,s.cost*s.qty,(s.price-s.cost)*s.qty,s.payment])];const csv=rows.map(r=>r.map(v=>`"${String(v??'').replace(/"/g,'""')}"`).join(',')).join('\r\n');downloadBlob(new Blob(['\ufeff'+csv],{type:'text/csv;charset=utf-8;'}),'smartbiz-sales-'+today()+'.csv');}
+function downloadBlob(blob,name){const url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download=name;document.body.appendChild(a);a.click();a.remove();URL.revokeObjectURL(url);}
+function importBackup(ev){const file=ev.target.files[0];if(!file)return;const r=new FileReader();r.onload=()=>{try{const obj=JSON.parse(r.result);if(!obj.products||!obj.sales||!obj.expenses||!obj.debts||!obj.settings)throw new Error('Invalid backup');if(!confirm('Import this backup and replace current records?'))return;data=obj;persist();fillSettings();renderAll();toast('Backup imported.');}catch(e){alert('That file is not a valid SmartBiz backup.');}finally{ev.target.value='';}};r.readAsText(file);}
+function clearData(){if(!confirm('This permanently clears all SmartBiz records in this browser. Download a backup first if you need one. Continue?'))return;if(!confirm('Final confirmation: clear all products, sales, expenses and debts?'))return;data={settings:data.settings,products:[],sales:[],expenses:[],debts:[]};persist();renderAll();toast('Records cleared.');}
+function fillSettings(){document.getElementById('businessName').value=data.settings.businessName||'My Business';document.getElementById('currency').value=data.settings.currency||'KSh';document.getElementById('lowStock').value=data.settings.lowStock??5;}
+loadData();fillSettings();renderAll();
+</script>
+</body>
+</html>
